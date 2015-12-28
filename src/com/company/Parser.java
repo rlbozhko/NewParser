@@ -30,7 +30,6 @@ public class Parser {
             rootHtml = cleaner.clean(URI.create(url).toURL());
             dom = new DomSerializer(new CleanerProperties()).createDOM(rootHtml);
         } catch (ParserConfigurationException | IOException e) {
-            System.out.println("BADURL  " + url);
             cleaner = null;
             dom = null;
             xpath = null;
