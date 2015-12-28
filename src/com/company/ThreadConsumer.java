@@ -2,6 +2,7 @@ package com.company;
 
 import com.company.entities.Item;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.concurrent.LinkedTransferQueue;
 
@@ -37,11 +38,17 @@ public class ThreadConsumer implements Runnable {
             item = linkedTransferQueue.take();
             if (i >= 100) {
                 Main.mainContinue = false;
-                System.out.println("\nContinue? Press 1 to Exit or any other character to continue");
-                if (in.nextInt() == 1) {
-                    System.exit(0);
-                } else {
+                System.out.println("\nContinue? Press 1 to Exit or any other number to continue");
+                try {
+                    if (in.nextInt() == 1) {
+                        System.exit(0);
+                    } else {
+                        i = 0;
+                    }
+                } catch (InputMismatchException e) {
                     i = 0;
+                    in.next();
+                    e.printStackTrace();
                 }
             }
         }
