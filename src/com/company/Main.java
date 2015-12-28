@@ -48,7 +48,7 @@ public class Main {
 
         newUrls.add(arguments.getArg(0));
 
-        ExecutorService service = Executors.newFixedThreadPool(20);
+        ExecutorService service = Executors.newFixedThreadPool(30);
         List<Future<Set<Item>>> futures = new ArrayList<>();
 
         while (bContinue || newUrls.size() > 0 || cacheUrls.size() > 0) {
