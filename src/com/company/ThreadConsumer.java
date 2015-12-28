@@ -25,7 +25,7 @@ public class ThreadConsumer implements Runnable {
     }
 
     public void doSmth() throws InterruptedException {
-
+        Thread.sleep(10000);
         Scanner in = new Scanner(System.in);
         int i = 0;
         int k = 0;
