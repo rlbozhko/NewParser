@@ -43,18 +43,24 @@ public class Parser {
     //Из-за периодичности ошибки checkAndReload не протестирован так что может и не помогает
     public Parser checkAndReload(int reloads) {
         int i = 0;
-        while (this.getRootHtml().getAllElements(true).length < 5 && i < reloads ) {
+        int countOfElements = this.getRootHtml().getAllElements(true).length;
+
+        if (countOfElements > 3) {
+            return this;
+        }
+        Parser newParser = new Parser(this.getUrl());
+
+        while (newParser.getRootHtml().getAllElements(true).length < 4 && i < reloads) {
             try {
                 Thread.sleep(200);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            Parser newParser = new Parser(this.getUrl());
+            newParser = new Parser(newParser.getUrl());
             i++;
-            return newParser;
         }
+        return newParser;
 
-        return this;
     }
 
 
