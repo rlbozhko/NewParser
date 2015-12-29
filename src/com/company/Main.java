@@ -103,7 +103,9 @@ public class Main {
 
         service.shutdown();
         if (oldUrls.size() == 1) {
-            System.out.println("Сайт Rozetka перегружен попробуйте через несколько минут");
+            System.out.println("Сайт Rozetka перегружен лиюо борется с этим парсером попробуйте: " +
+                    "\n паралельно открыть главную страницу Розетки в браузере(желательно Chrome)" +
+                    "\n перезапустить программу через несколько минут");
         }
 
         System.out.println(d);
