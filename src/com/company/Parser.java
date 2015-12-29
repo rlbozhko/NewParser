@@ -37,6 +37,17 @@ public class Parser {
         }
     }
 
+    public HtmlCleaner getCleaner() {
+        return cleaner;
+    }
+
+    public XPath getXpath() {
+        return xpath;
+    }
+
+    public TagNode getRootHtml() {
+        return rootHtml;
+    }
     public String getUrl() {
         return url;
     }

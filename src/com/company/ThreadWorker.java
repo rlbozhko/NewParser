@@ -40,6 +40,9 @@ public class ThreadWorker implements Callable<Set<Item>> {
         int page = 0;
         Parser mainPage;
         TagNode blockWithGoods;
+        String name;
+        String price;
+
         threadCacheItems.clear();
         do {
             page++;
@@ -53,8 +56,7 @@ public class ThreadWorker implements Callable<Set<Item>> {
                     //TagNode[] goods = mainPage.findAllNodes("//div[@class="g-i-tile-i-title clearfix"]/a/text()", blockWithGoods);
                     NodeList nodes = (NodeList) mainPage.jaxp("//a[contains(@onclick,'goodsTitleClick')]", XPathConstants.NODESET);
                     TagNode[] prices = mainPage.findAllNodes("//div[@class='g-price-uah']", blockWithGoods);
-                    String name;
-                    String price;
+
                     for (int i = 0; i < nodes.getLength(); i++) {
                         name = (nodes.item(i).getTextContent()).trim().replaceAll("\n", "");
                         price = mainPage.findText("/text()", prices[i]).trim().replaceAll("&thinsp;", "").replaceAll("\n", "");
