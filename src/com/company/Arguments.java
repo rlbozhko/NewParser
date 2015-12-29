@@ -14,7 +14,7 @@ public class Arguments {
     public Arguments(String[] args) {
 
         try {
-            if (args != null && args.length == 3) {
+            if (args != null && args.length == 3 && args[0].contains("rozetka") ) {
                 originalArguments = args;
                 arguments = new ArrayList<>(Arrays.asList(args));
                 arguments.set(0, URI.create(args[0]).toURL().toString());

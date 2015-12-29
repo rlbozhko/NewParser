@@ -14,7 +14,7 @@ import java.util.regex.Pattern;
 
 
 public class Main {
-
+    //TODO подключи логгер
     volatile static Boolean mainContinue = true;
     private static final Pattern ROZETKA_CATEGORY = Pattern.compile(".*/c\\d*(/filter/|/)");
 
@@ -46,6 +46,7 @@ public class Main {
             return;
         }
         //newUrls.add("http://rozetka.com.ua/computers-notebooks/c80253/");
+        //newUrls.add("http://google.com/");
         newUrls.add(arguments.getArg(0));
 
         ThreadConsumer queueConsumer;
@@ -119,17 +120,15 @@ public class Main {
                 }
             }
         }
-        if (!flagQueueConsumer) {
-            if (threadQueueConsumer != null) {
-                transferQueue.transfer(new Item("FINAL", "STOP"));
-                threadQueueConsumer.join();
-            }
-
-        }
-        if (oldUrls.size() == 1) {
-            System.out.println("Сайт Rozetka перегружен попробуйте через несколько минут");
+        if (!flagQueueConsumer && threadQueueConsumer != null) {
+            transferQueue.transfer(new Item("FINAL", "STOP"));
+            threadQueueConsumer.join();
         }
         service.shutdown();
+        if (oldUrls.size() == 1){
+            System.out.println("Сайт Rozetka перегружен попробуйте через несколько минут");
+        }
+
     }
 
     private static void getNewLinks(Set<String> cacheUrls, Parser browsePage) throws XPathExpressionException {
