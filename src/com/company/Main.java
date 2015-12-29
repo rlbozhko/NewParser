@@ -57,15 +57,12 @@ public class Main {
                     while (!mainContinue) {
                         Thread.sleep(2000);
                     }
-                    browsePage = new Parser(urlBrowse);
-                    //сейчас перед новым годом розетка перегружена и ИНОГДА! не грузит страницы с первого раза
+                    //сейчас перед новым годом розетка перегружена(либо уже начала бороться с этим парсером)
+                    // и ИНОГДА! не грузит норм. страницы с первого раза
                     //если не загружается главная-начальная страница то программа просто завершится
-                    //Из-за периодичности ошибки этот код не протестирован так что может и не помогает
-                    while (browsePage.getDom().getDocumentElement() == null && countReloadsTry < 5) {
-                        Thread.sleep(200);
-                        browsePage = new Parser(urlBrowse);
-                        countReloadsTry++;
-                    }
+                    //Из-за периодичности ошибки checkAndReload не протестирован так что может и не помогает
+                    browsePage = new Parser(urlBrowse).checkAndReload(5);
+
                     if (browsePage.getDom() == null) {
                         badUrls.add(browsePage.getUrl());
                     } else {

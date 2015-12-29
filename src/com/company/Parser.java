@@ -37,6 +37,26 @@ public class Parser {
         }
     }
 
+    //сейчас перед новым годом розетка перегружена(либо уже начала бороться с этим парсером)
+    // и ИНОГДА! не грузит норм. страницы с первого раза
+    //если не загружается главная-начальная страница то программа просто завершится
+    //Из-за периодичности ошибки checkAndReload не протестирован так что может и не помогает
+    public Parser checkAndReload(int countReloadsTry) {
+        while (this.getRootHtml().getAllElements(true).length <= 3 && countReloadsTry < 5) {
+            try {
+                Thread.sleep(200);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            Parser newParser = new Parser(this.getUrl());
+            countReloadsTry++;
+            return newParser;
+        }
+
+        return this;
+    }
+
+
     public HtmlCleaner getCleaner() {
         return cleaner;
     }
@@ -48,6 +68,7 @@ public class Parser {
     public TagNode getRootHtml() {
         return rootHtml;
     }
+
     public String getUrl() {
         return url;
     }

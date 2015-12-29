@@ -47,7 +47,7 @@ public class ThreadWorker implements Callable<Set<Item>> {
         do {
             page++;
             String sortedUrl = url + "page=" + page + ";" + "price=" + minPrice.trim() + "-" + maxPrice.trim() + "/";
-            mainPage = new Parser(sortedUrl);
+            mainPage = new Parser(sortedUrl).checkAndReload(5);
             if (mainPage.getDom() == null) {
                 blockWithGoods = null;
             } else {
