@@ -18,6 +18,7 @@ public class ThreadConsumer implements Runnable {
     @Override
     public void run() {
         try {
+            //System.out.println("ThreadConsumer");
             doSmth();
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -35,7 +36,6 @@ public class ThreadConsumer implements Runnable {
         Item item = linkedTransferQueue.take();
         Item itemTerminator = new Item("FINAL", "STOP");
 
-        System.out.println("ThreadConsumer");
         while (!item.equals(itemTerminator)) {
             Main.mainContinue = true;
             i++;

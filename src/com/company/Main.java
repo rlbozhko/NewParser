@@ -127,7 +127,7 @@ public class Main {
     }
 
     private static void getNewLinks(Set<String> cacheUrls, Parser browsePage) throws XPathExpressionException {
-        System.out.println("Новые линки");
+        //System.out.println("Новые линки");
         NodeList nodes = (NodeList) browsePage.jaxp("//a[contains(@href,'rozetka.com.ua')]/@href", XPathConstants.NODESET);
         for (int i = 0; i < nodes.getLength(); i++) {
             String href = (nodes.item(i).getNodeValue());

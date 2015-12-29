@@ -31,7 +31,7 @@ public class ThreadWorker implements Callable<Set<Item>> {
     }
 
     public Set<Item> call() throws Exception {
-        System.out.println("ThreadWorker");
+        //System.out.println("ThreadWorker");
         parseSortPrice(url, minPrice, maxPrice);
         return new HashSet<Item>(threadCacheItems);
     }
