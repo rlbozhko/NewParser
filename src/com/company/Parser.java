@@ -41,15 +41,16 @@ public class Parser {
     // и ИНОГДА! не грузит норм. страницы с первого раза
     //если не загружается главная-начальная страница то программа просто завершится
     //Из-за периодичности ошибки checkAndReload не протестирован так что может и не помогает
-    public Parser checkAndReload(int countReloadsTry) {
-        while (this.getRootHtml().getAllElements(true).length <= 3 && countReloadsTry < 5) {
+    public Parser checkAndReload(int reloads) {
+        int i = 0;
+        while (this.getRootHtml().getAllElements(true).length < 5 && i < reloads ) {
             try {
                 Thread.sleep(200);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
             Parser newParser = new Parser(this.getUrl());
-            countReloadsTry++;
+            i++;
             return newParser;
         }
 
