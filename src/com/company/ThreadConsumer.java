@@ -18,19 +18,23 @@ public class ThreadConsumer implements Runnable {
     @Override
     public void run() {
         try {
-            doSmth();
+             doSmth();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
 
     public void doSmth() throws InterruptedException {
+         //строка не влияет на производительность т.к. поиск первых товаров
+        // происходит около 10-ти секунд, однако это страховка что
+        // linkedTransferQueue будет проинициализирована
         Thread.sleep(10000);
         Scanner in = new Scanner(System.in);
         int i = 0;
         int k = 0;
         Item item = linkedTransferQueue.take();
         Item itemTerminator = new Item("FINAL", "STOP");
+        System.out.println("ThreadConsumer");
         while (!item.equals(itemTerminator)) {
             Main.mainContinue = true;
             i++;
