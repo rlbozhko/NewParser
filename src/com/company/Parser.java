@@ -43,9 +43,8 @@ public class Parser {
     //Из-за периодичности ошибки checkAndReload не протестирован так что может и не помогает
     public Parser checkAndReload(int reloads) {
         int i = 0;
-        int countOfElements = this.getRootHtml().getAllElements(true).length;
 
-        if (countOfElements > 3) {
+        if (this.getRootHtml().getAllElements(true).length > 3) {
             return this;
         }
         Parser newParser = new Parser(this.getUrl());
@@ -60,7 +59,6 @@ public class Parser {
             i++;
         }
         return newParser;
-
     }
 
 
