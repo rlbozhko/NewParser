@@ -69,7 +69,7 @@ public class Main {
                         if ((Boolean) browsePage.jaxp("//*[@id=\"sort_price\"]", XPathConstants.BOOLEAN)) {
                             //TODO cacheItems.addALL(parseSortPrice(browsePa......
                             future =
-                                    service.submit(new ThreadWorker(browsePage.getUrl(), arguments.getArg(1), arguments.getArg(2), transferQueue));
+                                    service.submit(new ThreadProducer(browsePage.getUrl(), arguments.getArg(1), arguments.getArg(2), transferQueue));
                             futures.add(future);
 
                             for (Future<Set<Item>> f : futures) {
@@ -103,7 +103,7 @@ public class Main {
 
         service.shutdown();
         if (oldUrls.size() == 1) {
-            System.out.println("Сайт Rozetka перегружен лиюо борется с этим парсером попробуйте: " +
+            System.out.println("Сайт Rozetka перегружен либо борется с этим парсером попробуйте: " +
                     "\n паралельно открыть главную страницу Розетки в браузере(желательно Chrome)" +
                     "\n перезапустить программу через несколько минут");
         }

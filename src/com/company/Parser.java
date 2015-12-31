@@ -44,12 +44,12 @@ public class Parser {
     public Parser checkAndReload(int reloads) {
         int i = 0;
 
-        if (this.getRootHtml().getAllElements(true).length > 3) {
+        if (this.getRootHtml() != null && this.getRootHtml().getAllElements(true).length > 3) {
             return this;
         }
         Parser newParser = new Parser(this.getUrl());
 
-        while (newParser.getRootHtml().getAllElements(true).length < 4 && i < reloads) {
+        while (newParser.getRootHtml()== null || (newParser.getRootHtml().getAllElements(true).length < 4 && i < reloads)) {
             try {
                 Thread.sleep(200);
             } catch (InterruptedException e) {
