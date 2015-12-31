@@ -54,7 +54,7 @@ public class ThreadProducer implements Callable<Set<Item>> {
                 blockWithGoods = mainPage.findOneNode("//*[@id='block_with_goods']/div[1]");
                 if (blockWithGoods != null) {
                     //TagNode[] goods = mainPage.findAllNodes("//div[@class="g-i-tile-i-title clearfix"]/a/text()", blockWithGoods);
-
+                    //Todo: Test this filter
                     if ((Boolean) mainPage.jaxp(("//a[contains(@onclick,'" + minPrice.trim() + " до " + maxPrice.trim() + "')]"), XPathConstants.BOOLEAN)) {
                         NodeList nodes = (NodeList) mainPage.jaxp("//a[contains(@onclick,'goodsTitleClick')]", XPathConstants.NODESET);
                         TagNode[] prices = mainPage.findAllNodes("//div[@class='g-price-uah']", blockWithGoods);
